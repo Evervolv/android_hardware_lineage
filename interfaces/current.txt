@@ -1,3 +1,4 @@
+9632cd2e5268a185483234f660bd7fdfc99b9c3684d3a28f7fffd4a5b1e95afc vendor.lineage.fastcharge@1.0::IFastCharge
 92dd14ba49816f606ba94ac529a22ad6eb16a5e4ee51a782aeca4a0a18285787 vendor.lineage.livedisplay@1.0::IColor
 234c7dbbca870805fd0cbc73dc1091a2ed475e8488d81f3fa13fbea416a22954 vendor.lineage.livedisplay@1.0::types
 897294c2e66cc92496b2c098c0a2faf7cb7837f6ba314bbb080631481c1e48bb vendor.lineage.livedisplay@2.0::IAdaptiveBacklight
