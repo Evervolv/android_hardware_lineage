@@ -1,9 +1,8 @@
-<?xml version="2.0" encoding="UTF-8"?>
 <!--
      Copyright (C) 2021 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
-<compatibility-matrix version="2.0" type="framework">
+<compatibility-matrix version="1.0" type="framework">
     <!-- Display -->
     <hal format="hidl" optional="true">
         <name>vendor.lineage.livedisplay</name>
