@@ -33,3 +33,23 @@ cc_library {
         "android.hardware.fastboot@1.1",
     ],
 }
+
+cc_binary {
+    name: "android.hardware.fastboot-service.custom_recovery",
+    init_rc: ["android.hardware.fastboot-service.custom_recovery.rc"],
+    vintf_fragments: ["android.hardware.fastboot-service.custom.xml"],
+    recovery: true,
+    srcs: [
+        "Fastboot_aidl.cpp",
+        "main.cpp",
+    ],
+    relative_install_path: "hw",
+    shared_libs: [
+        "android.hardware.fastboot-V1-ndk",
+        "libbase",
+        "libbinder_ndk",
+        "libhidlbase",
+        "libutils",
+        "libcutils",
+    ],
+}
