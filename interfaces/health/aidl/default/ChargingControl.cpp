@@ -20,12 +20,6 @@ namespace vendor {
 namespace lineage {
 namespace health {
 
-static bool fileExists(const std::string& path) {
-    android::base::unique_fd fd(TEMP_FAILURE_RETRY(open(path.c_str(), O_RDWR)));
-
-    return fd > -1;
-}
-
 #ifdef HEALTH_CHARGING_CONTROL_SUPPORTS_TOGGLE
 static const std::vector<ChargingEnabledNode> kChargingEnabledNodes = {
         {HEALTH_CHARGING_CONTROL_PATH, HEALTH_CHARGING_CONTROL_ENABLE,
@@ -36,17 +30,15 @@ static const std::vector<ChargingEnabledNode> kChargingEnabledNodes = {
 };
 
 ChargingControl::ChargingControl() : mChargingEnabledNode(nullptr) {
-    for (const auto& node : kChargingEnabledNodes) {
-        if (!fileExists(node.path)) {
-            continue;
+    while (!mChargingEnabledNode) {
+        for (const auto& node : kChargingEnabledNodes) {
+            if (access(node.path.c_str(), F_OK)) {
+                mChargingEnabledNode = &node;
+                break;
+            }
+            PLOG(WARNING) << "Failed to access() file " << node.path;
+            usleep(100000);
         }
-
-        mChargingEnabledNode = &node;
-        break;
-    }
-
-    if (!mChargingEnabledNode) {
-        LOG(FATAL) << "Couldn't find a suitable charging control node";
     }
 }
 
@@ -98,13 +90,15 @@ static const std::vector<std::string> kChargingDeadlineNodes = {
 };
 
 ChargingControl::ChargingControl() : mChargingDeadlineNode(nullptr) {
-    for (const auto& node : kChargingDeadlineNodes) {
-        if (!fileExists(node)) {
-            continue;
+    while (!mChargingDeadlineNode) {
+        for (const auto& node : kChargingDeadlineNodes) {
+            if (access(node.path.c_str(), F_OK)) {
+                mChargingDeadlineNode = &node;
+                break;
+            }
+            PLOG(WARNING) << "Failed to access() file " << node.path;
+            usleep(100000);
         }
-
-        mChargingDeadlineNode = &node;
-        break;
     }
 }
 
