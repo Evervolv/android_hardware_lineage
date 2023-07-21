@@ -20,6 +20,7 @@
 #include <utils/Errors.h>
 
 #include <algorithm>
+#include <functional>
 
 namespace vendor {
 namespace lineage {
