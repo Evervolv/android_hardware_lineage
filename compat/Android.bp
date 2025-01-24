@@ -469,6 +469,14 @@ cc_library {
     vendor_available: true,
 }
 
+cc_library {
+    name: "libnativehelper_shim",
+    version_script: "libnativehelper/libnativehelper.map",
+    srcs: [
+        "libnativehelper/libnativehelper.cpp",
+    ],
+}
+
 cc_library_shared {
     name: "libprocessgroup_shim",
     srcs: [
