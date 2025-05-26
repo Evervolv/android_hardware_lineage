@@ -103,5 +103,4 @@ cc_binary {
         "libbinder_ndk",
         "vendor.lineage.health-V2-ndk",
     ],
-    required: ["org.lineage.health.xml"],
 }
